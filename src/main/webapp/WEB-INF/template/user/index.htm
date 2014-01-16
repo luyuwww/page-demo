@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>最代码freemarker分页demo</title>
+<#import "zuidaima_macro.htm" as zuidaima_macro />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="最代码  www.zuidaima.com 提供最全面，最专业的代码分享站，近万名用户分享超过1万份高质量的代码" />
+<meta name="keywords" content="代码,代码分享,代码例子,源码,java代码，javascript代码,最代码,程序" />
+<link href="http://cdn.bootcss.com/twitter-bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet" />
+<link href="/resource/css/zuidaima.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="main container margin_top10">
+		<div class="row-fluid">
+			<div class="data_list margin_top10">
+				<div class="data_list_title">
+					<img src="/resource/img/list_ico.png"/>${data_title}
+				</div>
+				<@zuidaima_macro.users_list_macro page.content/>
+				<@zuidaima_macro.page_macro page ""/>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!-- page -->
+<#macro page_macro page params>
+	<#assign step=5/>
+	<#assign currentPage=(page.number+1)/>
+	<div class="pagination pagination-centered">
+	<ul>
+	<#if page.hasContent()>
+		<#assign begin = currentPage - ((step - 1) / 2)/>
+		<#if (begin<=0)>
+			<#assign begin=1/>
+		</#if>
+		<#assign end = currentPage + ((step - 1) / 2)/>
+		<#if (end<step)>
+			<#assign end=step/>
+		</#if>
+		<#if (end>page.totalPages)>
+			<#assign end=page.totalPages/>
+		</#if>
+		<#if (begin==1)>
+			<#assign hasFirst=false/>
+		<#else>
+			<#assign hasFirst=(currentPage > (step / 2))/>
+		</#if>
+		<#if (end == page.totalPages)>
+			<#assign hasFinal=false/>
+		<#else>
+			<#assign hasFinal=(currentPage < page.totalPages)/>
+		</#if>
+		<#if page.hasPreviousPage()>
+			<li><a  class="" href="?p=${currentPage-1}&${params}">上一页</a></li>
+		</#if>
+		<#if (hasFirst&&page.totalPages>1)>
+			<li><a href="?p=1&${params}" class="page-numbers">1</a><span class="page-numbers dots">...</span></li>
+		</#if>
+		<#if (page.totalPages>1)>
+		<#list begin..end as p> 
+			<li class="<#if p==currentPage> active</#if>"><a href="?p=${p}&${params}">${p}</a></li>
+		</#list>
+		</#if>
+		<#if hasFinal>
+			<li><span class="dots">...</span><a href="?p=${page.totalPages}&${params}" class="page-numbers">${page.totalPages}</a></li>
+		</#if>
+		<#if page.hasNextPage()>
+			<li><a  class="" href="?p=${currentPage+1}&${params}">下一页</a></li>
+		</#if>
+	</#if>
+	</ul>
+	</div>
+</#macro>
+
+<!--users list -->
+<#macro users_list_macro users>
+	<div class="datas row-fluid">
+		<#list users as user>
+		<@event_user_list_macro user/>
+		<#if (user_index+1)%4==0>
+		</div>
+		<div class="datas row-fluid">
+		</#if>
+		</#list>
+	</div>
+</#macro>
+
+<!--event user-->
+<#macro event_user_list_macro user>
+	<div class="data span3 row-fluid">
+		<div class="span4">
+			<img class="user_header_48X48" src="http://www.zuidaima.com/${user.avatarUrl}" alt="${user.name}的gravatar头像" />
+		</div>
+		<div class="span8">
+			<div class="heigth_line_height_24">
+				<a class="name" href="http://www.zuidaima.com/user/${user.id}.htm">${user.name}</a>
+			</div>
+			<div class="heigth_line_height_24">
+				<span class="code">贡献1</span>
+				<span class="niubi">牛币1</span>
+			</div>
+		</div>
+	</div>
+</#macro>
