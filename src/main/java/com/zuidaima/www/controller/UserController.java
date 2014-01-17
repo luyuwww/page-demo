@@ -16,7 +16,6 @@ import com.zuidaima.www.service.UserService;
 @Controller
 @RequestMapping({ "/user" })
 public class UserController {
-
 	@Autowired
 	public UserService<User> userService;
 
